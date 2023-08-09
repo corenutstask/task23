@@ -1,0 +1,22 @@
+.radio-custom{
+  appearance: none;
+  outline: 2px solid pink;
+  height: 10px;
+  outline-offset: 3px;
+  width:  10px;
+  border-radius: 50%;
+}
+.radio-custom:checked{
+  background-color: pink;
+}
+.panel
+{
+  margin-top: 20px;
+}
+.c{
+ background-color: rgba(132, 132, 255, 0.574);
+}
+
+.btn-outline-warning{
+  color: black;
+}

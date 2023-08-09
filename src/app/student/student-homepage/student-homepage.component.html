@@ -1,0 +1,23 @@
+<mat-toolbar class="header">
+  <mat-icon (click)="toggleSideNav()">menu</mat-icon>
+  <span class="menu-text" style="padding: 10px;">
+    <span>  &nbsp; Student Home</span></span>
+   <span><img src="" alt=""></span>
+  <span>
+    <mat-icon class="material-icons"  routerLink="/student/home">home</mat-icon>
+    <mat-icon class="material-icons">logout </mat-icon>
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [opened]="isSideNavOpened">
+    <mat-nav-list>
+      <a  mat-list-item  routerLink="/student/pendingtask" style="color: white;"><span class="fas fa-light fa-list-ul" style="color:#028b8b ;"></span>&nbsp; Pending Task</a>
+      <a  mat-list-item  routerLink="/student/completedtask" style="color: white;"><span class="fas fa-solid fa-list-check" style="color:#028b8b ;"></span>&nbsp; Completed Task</a>
+      <a  mat-list-item  routerLink="/student/profile" style="color: white;"><span class="fas fa-solid fa-user" style="color:#028b8b ;"></span>&nbsp;Profile</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,73 @@
+.searchable-dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.options-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+
+
+  /* Styling for the dropdown container */
+  .searchable-dropdown {
+    position: relative;
+    width: 300px;
+  }
+
+  /* Styling for the input field */
+  .searchable-dropdown input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Styling for the options container */
+  .options-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+
+  /* Animation for showing the options container */
+  .options-container.show {
+    display: block;
+  }
+
+  /* Styling for each option */
+  .option {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .option:hover {
+    background-color: #f0f0f0;
+  }

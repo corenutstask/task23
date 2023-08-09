@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.19.3/dist/css/mdb.min.css">
+
+<!--* adding admin  -->
+<div>
+  <button class="btn btn-outline-success" (click)="mode('adding')">Add Batch</button>
+</div>
+<div class="container" *ngIf="saveOrUpadate">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-5">
+      <div class="card">
+        <div class="card-body">
+          <!-- Registration Form -->
+          <form #form="ngForm" (ngSubmit)="addBatch(form)">
+            <h2 class="text-center mb-4">Add Batch</h2>
+
+            <label>Selecet a Organization</label>
+            <select class="form-control" id="selectedBuilding"  [(ngModel)]="selectedOrganization" name="Organization" (ngModelChange)="onOrganizationselection()" placeholder="Select a building">
+              <option  [selected]="true">-------- Select The Organization----------</option>
+              <option *ngFor="let organization of listOfOrganizations;index as i" [value]=" organization.organization_id">{{ organization.organization_name }}</option>
+            </select>
+            <label>Selecet a Branch</label>
+            <select class="form-control" id="selectedBrach"  [(ngModel)]="selectedBranch" name="Organization" (ngModelChange)="onBranchselectinon()" placeholder="Select a building">
+              <option *ngFor="let branch of listOfBranches" [value]=branch.branch_id>{{ branch.branch_name}}</option>
+            </select>
+
+            <!-- Batch Name Field -->
+            <div class="mb-4">
+              <label for="organizaion-name" class="form-label">Batch Name</label>
+              <input type="text" class="form-control" id="organizaion-name" placeholder="Enter Organizaion Name" [(ngModel)]="newBatch.batch_name" [ngModelOptions]="{standalone: true}">
+            </div>
+             <!-- Batch Name Field -->
+             <div class="mb-4">
+              <label for="organizaion-name" class="form-label">Batch Status</label><br>
+             Active <input type="radio" [(ngModel)]="newBatch.status" value="active" name="status">
+             Inactive <input type="radio" [(ngModel)]="newBatch.status" value="inactive" name="status">
+            </div>
+
+             <div class="mb-4">
+              <label for="organizaion-name" class="form-label"><b>Choose the Subjects</b></label><br>
+              <div *ngFor="let subject  of listOfSubjects">
+                <input
+                  type="checkbox"
+                  [value]="subject"
+                  [(ngModel)]="selectedOptions[subject]"
+                  (change)="updateSelectedOptions()"
+                  [ngModelOptions]="{standalone: true}"
+                />
+                {{ subject }}
+              </div>
+            </div>
+            <!-- Register Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-outline-success btn-sm">Create Batch</button>
+              <button type="" class="btn btn-outline-secondry btn-sm" (click)="mode('cancle')">Cancle</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<table class="table" *ngIf="!saveOrUpadate">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">Batch Id</th>
+      <th scope="col">Batch Name</th>
+      <th scope="col">Batch Location</th>
+      <th scope="col">Batch Satus</th>
+      <th scope="col">Subjects </th>
+      <th scope="col" colspan="2" class="text-center">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-success" *ngFor="let batch of listOfBatchs">
+      <td>{{batch.batch_id}}</td>
+      <td>{{batch.batch_name}}</td>
+      <td>{{getbachlocation(batch.branch_id)}}</td>
+      <td>{{batch.status}}</td>
+      <td>{{batch.subjects}}</td>
+
+      <!-- <td >{{}}</td> -->
+      <td>
+        <button class="btn btn-outline-danger btn-sm" (click)="deleteBatch(batch.batch_id)">
+          <span class="fas fa-duotone fa-trash"></span>&nbsp;Delete
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-outline-warning btn-sm" (click)="editBranch(batch.batch_id)">
+        <span class="fas fa-light fa-pencil " style="color: #fbff00;" ></span>Edit
+        </button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

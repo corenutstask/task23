@@ -1,0 +1,72 @@
+
+
+<!--* adding admin  -->
+<div class="panel" *ngIf="!curentStatus">
+  Admin Panel:
+  <button class="btn btn-success" (click)="panelStatus('adding')"> ADD Organizaion</button>
+</div>
+
+
+<div class="container" *ngIf="curentStatus">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-5">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Registration Form -->
+          <form #form="ngForm" (ngSubmit)="addOrganization(form,saveOrUpadate)">
+            <h2 class="text-center mb-4">Add Organization</h2>
+            <!-- Oganization Name Field -->
+            <div class="mb-4">
+              <label for="organizaion-name" class="form-label">Oganization Name</label>
+              <input type="text" class="form-control" id="organizaion-name" placeholder="Enter Organizaion Name" [(ngModel)]="newOrganizaion.organization_name" [ngModelOptions]="{standalone: true}">
+            </div>
+             <!-- Oganization Name Field -->
+             <div class="mb-4">
+              <label for="organizaion-name" class="form-label">Oganization Status</label><br>
+             Active&nbsp; <input type="radio" class="radio-custom" [(ngModel)]="newOrganizaion.status" value="active" name="status">
+             Inactive <input type="radio" [(ngModel)]="newOrganizaion.status" value="inactive" name="status">
+            </div>
+
+            <!-- Register Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-success" *ngIf="saveOrUpadate">Register</button>&nbsp;
+              <button type="submit" class="btn btn-warning" *ngIf="!saveOrUpadate">update</button>&nbsp;
+              <button type="submit" class="btn c" (click)="panelStatus('display')">Cancle</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table table-success table-striped" *ngIf="!curentStatus">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">SN NO</th>
+      <th scope="col">Organization ID</th>
+      <th scope="col">Organization Name</th>
+      <th scope="col">Created BY</th>
+      <th scope="col" colspan="2" class="text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let org of getAllOrganizations;index as i">
+      <th scope="row">{{i+1}}</th>
+      <td>{{org.organization_name}}</td>
+      <td>{{org.organization_id}}</td>
+      <td>{{org.created_by}}</td>
+      <td>
+        <button class="btn btn-outline-danger btn-sm" (click)="deleteOrganization(org.organization_id)">
+          <span class="fas fa-duotone fa-trash"></span>&nbsp;Delete
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-outline-warning btn-sm" (click)="editing(org.organization_id)">
+        <span class="fas fa-light fa-pencil " style="color: #fbff00;" ></span>Edit
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

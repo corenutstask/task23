@@ -1,0 +1,75 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-5">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Registration Form -->
+          <form #form="ngForm" (ngSubmit)="assignTask(form)">
+
+            <h2 class="text-center mb-4">Assign Task</h2>
+
+            <label>Selecet a subject</label>
+            <select class="form-control" id="selectedOrganization"  [(ngModel)]="selectedOrganization" name="Organization" (ngModelChange)="onOrganizationselection()" placeholder="Select a building">
+              <option *ngFor="let organization of listOfOrganization" [value]=" organization ">{{ organization }}</option>
+            </select>
+
+            <label for="selectedBrach"> Select Branch</label>
+            <select class="form-control" id="selectedBrach"  [(ngModel)]="selectedBranch" name="Organization" (ngModelChange)="onBranchselectinon()" placeholder="Select a building">
+              <option *ngFor="let branch of listOfBranches" [value]=" branch ">{{ branch }}</option>
+            </select>
+            <br>
+            <label for="selectedBrach"> Select Batch</label>
+            <select class="form-control" id="selectedBatch"  [(ngModel)]="selectedBatch" name="Batch" (ngModelChange)="onBatchselection()" placeholder="Select a building">
+              <option *ngFor="let Batch of listOfBatch" [value]=" Batch ">{{ Batch }}</option>
+            </select>
+
+
+            <label for="selectedSubject"> Select Subject</label>
+            <select class="form-control" id="selectedSubject"  [(ngModel)]="selectedSubject" name="Subject" (ngModelChange)="onSubjectselection()" placeholder="Select a building">
+              <option *ngFor="let Subject of listOfSubject" [value]=" Subject ">{{ Subject }}</option>
+            </select>
+            <br>
+            <div class="mb-4">
+            <label for="">Select the Task</label>
+            <div class="searchable-dropdown">
+              <input
+                type="text"
+                placeholder="Search for an option"
+                [(ngModel)]="selectedOption"
+                [ngModelOptions]="{standalone: true}"
+                (click)="toggleOptionsContainer()"
+                (blur)="closeOptionsContainer()"
+              />
+              <div class="options-container" [ngClass]="{'show': selectedOption}">
+                <div
+                  *ngFor="let option of filterOptions(selectedOption)"
+                  class="option"
+                  (click)="onOptionSelected(option)"
+                >
+                  {{ option }}
+                </div>
+              </div>
+            </div>
+
+              <div class="mb-4">
+                <label for="Assigment-name">Assignment Expiration Date </label>
+                <br>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" placeholder="Choose a date" [min]="minDate" [(ngModel)]="newTaskAssign.expiration_date" [ngModelOptions]="{standalone: true}">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Register Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

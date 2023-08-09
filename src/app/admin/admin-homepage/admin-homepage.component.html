@@ -1,0 +1,29 @@
+<mat-toolbar class="header">
+  <mat-icon (click)="toggleSideNav()">menu</mat-icon>
+  <span class="menu-text" style="padding: 10px;">
+    <span>  &nbsp; Admin Home</span></span>
+   <span><img src="" alt=""></span>
+  <span>
+    <mat-icon class="material-icons"  routerLink="/admin">home</mat-icon>
+    <mat-icon class="material-icons">logout </mat-icon>
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" [opened]="isSideNavOpened">
+    <mat-nav-list>
+      <a  mat-list-item  routerLink="/admin/organization" style="color: white;"><i class="fa fa-home"></i> &nbsp;Organization</a>
+      <a  mat-list-item  routerLink="/admin/branch" style="color: white;"><i class="fa-solid fa-buildings"></i>Branch</a>
+      <a  mat-list-item  routerLink="/admin/batch" style="color: white;">Batch</a>
+      <a  mat-list-item  routerLink="/admin/subjects" style="color: white;">Subject</a>
+      <a  mat-list-item  routerLink="/admin/topic" style="color: white;">Topic</a>
+      <a  mat-list-item  routerLink="/admin/assingmests" style="color: white;">assignment</a>
+      <a  mat-list-item  routerLink="/admin/profile" style="color: white;">Student</a>
+      <a  mat-list-item  routerLink="/admin/assing-task" style="color: white;">Assign task to batch </a>
+      <a  mat-list-item  routerLink="/admin/add-admin" style="color: white;">admin </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

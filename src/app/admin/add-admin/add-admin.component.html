@@ -1,0 +1,42 @@
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.19.3/dist/css/mdb.min.css">
+
+<!--* adding admin  -->
+
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 mt-5">
+        <div class="card">
+          <div class="card-body">
+
+            <!-- Registration Form -->
+            <form #form="ngForm" (ngSubmit)="addFloor(form)">
+              <h2 class="text-center mb-4">Adding Admin</h2>
+              <!-- User Name Field -->
+              <div class="mb-4">
+                <label for="user_name" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="user_name" placeholder="Enter User Name" [(ngModel)]="newUser.user_name" [ngModelOptions]="{standalone: true}">
+              </div>
+
+              <!-- Email ID Field -->
+              <div class="mb-4">
+                <label for="email_id" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email_id" placeholder="Enter Email Address"  [(ngModel)]="newUser.email_id"[ngModelOptions]="{standalone: true}">
+              </div>
+
+              <!-- Password Field -->
+              <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter Password"  [(ngModel)]="newUser.password" [ngModelOptions]="{standalone: true}">
+              </div>
+              <!-- Register Button -->
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-5">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Registration Form -->
+          <form #form="ngForm" (ngSubmit)="addTopic(form)">
+
+            <h2 class="text-center mb-4">Add Topic Details</h2>
+
+            <label>Selecet a Subject</label>
+            <select class="form-control" id="selectedSubject"  [(ngModel)]="newTopic.subject_id" name="subjects" placeholder="Select a building">
+              <option *ngFor="let subject of listOfsubjects" [value]=subject.subject_id>{{ subject.subject_name }}</option>
+            </select>
+
+            <!-- Branch Name Field -->
+            <div class="mb-4">
+              <label for="topic-name" class="form-label">Topic Name</label>
+              <input type="text" class="form-control" id="topic-name" placeholder="Enter topic Name" [(ngModel)]="newTopic.topic_name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="mb-4">
+              <label for="sub-topic-name" class="form-label">Sub Topic Name</label>
+              <input type="text" class="form-control" id="sub-topic-name" placeholder="Enter Sub topic Name" [(ngModel)]="newTopic.sub_topic_name" [ngModelOptions]="{standalone: true}">
+            </div>
+                <!-- Register Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Create Topic</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
