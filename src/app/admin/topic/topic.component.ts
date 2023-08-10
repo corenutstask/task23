@@ -15,7 +15,13 @@ export class TopicComponent implements OnInit {
   listOfsubjects:Subject[]=[]
 
   newTopic=new Topic
-  constructor(private repo:RepositryService) { }
+  constructor(private repo:RepositryService) {
+    this.repo.getallSubjects().subscribe(
+      respose=>{
+        this.listOfsubjects=respose
+      }
+    )
+  }
 
   ngOnInit(): void {
     // this.listOfsubjects=this.repo.getallSubjects()

@@ -19,6 +19,7 @@ export class BranchComponent implements OnInit {
   listOfOrganizations?:Organization[]
   listOfBranches:Branch[]=[]
   organizationnumber?:number
+orgname: any;
   constructor(private repo:RepositryService) {
   this.repo.getallOrganizations.subscribe(
     (response)=>{
@@ -50,11 +51,12 @@ export class BranchComponent implements OnInit {
     console.log(this.newbranch,"this this brach from Component")
     this.newbranch.created_admin=1
     this.newbranch.created_on=new Date()
-    this.newbranch.organization_id=this.organizationnumber
+    this.newbranch.organization_id=this.selectedOrganization
     if(mode==true){
       this.repo.addBranch(this.newbranch)
     }
     else{
+      this.newbranch.organization_id=this.selectedOrganization
       this.repo.updateBranch(this.newbranch)
     }
 
@@ -88,14 +90,15 @@ export class BranchComponent implements OnInit {
     this.repo.deleteBranch(id)
     }
   }
-  editing(id:number|undefined){
 
-    this.newbranch=this.listOfBranches?.filter(e=>e.branch_id==id)[0]
-    this.isaddingBranch=true
-    this.saveOrUpadate=false
+  editing(id: number | undefined) {
+    this.newbranch = this.listOfBranches?.filter(e => e.branch_id == id)[0];
+    this.selectedOrganization = this.newbranch?.organization_id;
+    this.isaddingBranch = true;
+    this.saveOrUpadate = false;
     console.log(this.newbranch);
-
-
+    this.orgname = this.getOrganizationName(this.selectedOrganization);
+    console.log(this.orgname);
   }
   get listBranches():Branch[]{
     return this.listOfBranches

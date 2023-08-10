@@ -122,6 +122,7 @@ export class BatchComponent implements OnInit {
     const sub=this.newBatch.subjects
     console.log(this.newBatch,"---------------")
     console.log(this.listOfSubjects1)
+    this.saveOrUpadate=true
     if(sub!=undefined){
       const subname=this.listOfSubjects1.filter(sub1=>sub.includes(sub1.subject_id))
       const subName=subname.map(e=>e.subject_name)
@@ -134,7 +135,6 @@ export class BatchComponent implements OnInit {
       }
       )
     }
-
 
 
     this.saveOrUpadate=true

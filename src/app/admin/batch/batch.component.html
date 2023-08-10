@@ -3,7 +3,7 @@
 
 <!--* adding admin  -->
 <div>
-  <button class="btn btn-outline-success" (click)="mode('adding')">Add Batch</button>
+  <button class="btn btn-outline-success" (click)="mode('adding')" >Add Batch</button>
 </div>
 <div class="container" *ngIf="saveOrUpadate">
   <div class="row justify-content-center">
@@ -12,7 +12,7 @@
         <div class="card-body">
           <!-- Registration Form -->
           <form #form="ngForm" (ngSubmit)="addBatch(form)">
-            <h2 class="text-center mb-4">Add Batch</h2>
+            <h2 class="text-center mb-4"><span  *ngIf="saveOrUpadate">Add </span> <span *ngIf="!saveOrUpadate">Update </span>Batch</h2>
 
             <label>Selecet a Organization</label>
             <select class="form-control" id="selectedBuilding"  [(ngModel)]="selectedOrganization" name="Organization" (ngModelChange)="onOrganizationselection()" placeholder="Select a building">

@@ -12,13 +12,16 @@
         <div class="card-body">
 
           <!-- Registration Form -->
-          <form #form="ngForm" (ngSubmit)="addBranch(form,saveOrUpadate)">
+          <form #form="ngForm" (ngSubmit)="addBranch(form, saveOrUpadate)">
             <h2 class="text-center mb-4">Add Branch</h2>
-            <label>Selecet a Organization</label>
-            <select class="form-control"   [(ngModel)]="selectedOrganization" name="Organization" (ngModelChange)="onOrganizationselection()" placeholder="Select a building">
-              <option value="dknfvjd" selected [ngValue]="true" > dknfvjdv</option>
-              <option *ngFor="let organization of listOfOrganizations" [value]=organization.organization_id   >{{ organization.organization_name }}</option>
+            <label>Select an Organization</label>
+            <select class="form-control" [(ngModel)]="selectedOrganization" name="Organization">
+              <option *ngIf="saveOrUpadate"  selected  [ngValue]="null" disabled >select organization</option>
+              <option *ngIf="!saveOrUpadate" [ngValue]="selectedOrganization" selected hidden>{{ this.orgname }}</option>
+              <option *ngFor="let organization of listOfOrganizations" [value]="organization.organization_id">{{ organization.organization_name }}</option>
             </select>
+
+
 
             <!-- Branch Name Field -->
             <div class="mb-4">
